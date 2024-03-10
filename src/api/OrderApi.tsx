@@ -25,20 +25,20 @@ export const useCreateCheckoutSession = () => {
   const createCheckoutSessionRequest = async (checkoutSessionRequest: CheckoutSessionRequest) => {
     const accessToken = await getAccessTokenSilently();
 
-    const res = await fetch(`${API_BASE_URL}/api/order/checkout/create-checkout-session`, {
+    const response = await fetch(`${API_BASE_URL}/api/order/checkout/create-checkout-session`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
         Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(checkoutSessionRequest),
     });
 
-    if (!res.ok) {
+    if (!response.ok) {
       throw new Error("Unable to create checkout session");
     }
 
-    return res.json();
+    return response.json();
   };
 
   const {
@@ -53,5 +53,8 @@ export const useCreateCheckoutSession = () => {
     reset();
   }
 
-  return { createCheckoutSession, isLoading };
+  return {
+    createCheckoutSession,
+    isLoading,
+  };
 };
