@@ -7,6 +7,7 @@ import UserProfilePage from "./pages/UserProfilePage";
 import PrivateRoute from "./auth/PrivateRoute";
 import ManageRestaurantPage from "./pages/ManageRestaurantPage";
 import SearchPage from "./pages/SearchPage";
+import DetailsPage from "./pages/DetailsPage";
 
 const AppRoutes = () => {
   return (
@@ -28,7 +29,14 @@ const AppRoutes = () => {
           </Layout>
         }
       />
-
+      <Route
+        path="/detail/:restaurantId"
+        element={
+          <Layout showHero={false}>
+            <DetailsPage />
+          </Layout>
+        }
+      />
       <Route element={<PrivateRoute />}>
         <Route
           path="/user-profile"

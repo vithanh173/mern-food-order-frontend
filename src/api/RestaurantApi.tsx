@@ -29,6 +29,28 @@ export const useGetRestaurant = () => {
   return { restaurant, isLoading };
 };
 
+export const useGetRestaurantById = (restaurantId?: string) => {
+  const getRestaurantByIdRequest = async (): Promise<Restaurant> => {
+    const res = await fetch(`${API_BASE_URL}/api/restaurant/${restaurantId}`, {
+      method: "GET",
+    });
+    console.log(res);
+
+    if (!res.ok) {
+      throw new Error("Failed to get restaurant");
+      console.log(123);
+    }
+    return res.json();
+  };
+
+  const { data: restaurant, isLoading } = useQuery(
+    "fetchRestaurantById",
+    getRestaurantByIdRequest,
+    { enabled: !!restaurantId }
+  );
+  return { restaurant, isLoading };
+};
+
 export const useCreateRestaurant = () => {
   const { getAccessTokenSilently } = useAuth0();
 
