@@ -12,7 +12,7 @@ const ManageRestaurantPage = () => {
   const { createRestaurant, isLoading: isCreateLoading } = useCreateRestaurant();
   const { restaurant } = useGetRestaurant();
   const { updateRestaurant, isLoading: isUpdateLoading } = useUpdateRestaurant();
-  const { orders, isLoading } = useGetRestaurantOrders();
+  const { orders } = useGetRestaurantOrders();
 
   const isEditing = !!restaurant;
 
